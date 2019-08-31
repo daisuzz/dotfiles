@@ -1,0 +1,15 @@
+[user]
+	email = ds.suzuki217@gmail.com
+	name = Daisaku Suzuki
+[core]
+	excludesfile = .gitignore
+[filter "lfs"]
+	clean = git-lfs clean %f
+	smudge = git-lfs smudge %f
+	required = true
+[color]
+	ui = true
+[alias]
+[pager]
+  branch = cat
+  log = cat
