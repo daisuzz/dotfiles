@@ -1,0 +1,8 @@
+#!/bin/zsh
+
+DOT_FILES=(.zshrc .vimrc)
+
+for file in ${DOT_FILES[@]} 
+do
+ ln -s $HOME/repository/dotfiles/$file $HOME/$file
+done

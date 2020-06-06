@@ -24,6 +24,9 @@ setopt nobeep
 # auto cd
 setopt auto_cd
 
+# cdpath
+cdpath=(~/repository)
+
 # zshcompletions
 if type brew &>/dev/null; then
   FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
