@@ -3,7 +3,12 @@ autoload -Uz colors
 colors
 
 # prompt
-PROMPT='%F{green}[%n@%m]%f %c $ '
+autoload -Uz vcs_info
+precmd_vcs_info() { vcs_info }
+precmd_functions+=( precmd_vcs_info )
+setopt prompt_subst
+PROMPT='%F{green}[%n@%m]%f %d %F{yellow}$vcs_info_msg_0_%f %# '
+zstyle ':vcs_info:git:*' formats '%b'
 
 # share history
 setopt share_history
@@ -57,12 +62,14 @@ alias gsc="git switch -c"
 alias gsm="git switch master"
 alias gb="git branch"
 alias gba="git branch -a"
+alias gbd="git branch -d"
+alias gbD="git branch -D"
 alias gst="git status"
 alias gfa="git fetch --all --prune"
 alias gm="git merge"
 alias glo="git log --oneline -n 10"
-alias ggpull="git pull"
-alias ggpush="git push"
+alias ggpull="git pull origin $vcs_info_msg_0_"
+alias ggpush="git push origin $vcs_info_msg_0_"
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/Users/daisuzz/.sdkman"
