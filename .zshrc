@@ -68,8 +68,8 @@ alias gst="git status"
 alias gfa="git fetch --all --prune"
 alias gm="git merge"
 alias glo="git log --oneline -n 10"
-alias ggpull="git pull"
-alias ggpush="git push"
+alias ggpull="git pull origin $vcs_info_msg_0_"
+alias ggpush="git push origin $vcs_info_msg_0_"
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/Users/daisuzz/.sdkman"
