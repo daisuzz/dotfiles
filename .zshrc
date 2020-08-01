@@ -7,8 +7,9 @@ autoload -Uz vcs_info
 precmd_vcs_info() { vcs_info }
 precmd_functions+=( precmd_vcs_info )
 setopt prompt_subst
-PROMPT='%F{green}[%n@%m]%f %~ %F{yellow}$vcs_info_msg_0_%f '
-zstyle ':vcs_info:git:*' formats '%b'
+zstyle ':vcs_info:git:*' formats "%F{yellow}%b%f"
+zstyle ':vcs_info:git:*' actionformats "%F{yellow}%b %a%f"
+PROMPT='%F{green}[%n@%m]%f %~ $vcs_info_msg_0_ '
 
 # share history
 setopt share_history
