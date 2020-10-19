@@ -34,15 +34,10 @@ setopt auto_cd
 cdpath=(~/repository)
 
 # zshcompletions
-if type brew &>/dev/null; then
-  FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+fpath=(~/.zsh/completion $fpath)
 
-  autoload -Uz compinit
-  compinit
-fi
-
-# docker completions
-zstyle ':completion:*:*:docker:*' option-stacking yes
+autoload -Uz compinit
+compinit -u
 
 # select completion
 zstyle ':completion:*' menu select
@@ -88,3 +83,5 @@ function peco-history-selection() {
 zle -N peco-history-selection
 bindkey '^R' peco-history-selection
 
+# Go
+export PATH=/usr/local/go:$PATH
