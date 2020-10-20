@@ -42,6 +42,12 @@ compinit -u
 # select completion
 zstyle ':completion:*' menu select
 
+# zsh-autosuggestions
+if [ ! -e '~/.zsh/zsh-autosuggestions/zsh-autosugestions.zsh'  ]; then
+  git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
+fi
+source .zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+
 # alias
 alias u='cd ../'
 alias uu='cd ../../'
