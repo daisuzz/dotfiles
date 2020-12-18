@@ -22,7 +22,7 @@ export SAVEHIST=10000
 setopt correct
 
 # set vim keybind
-bindkey -v
+# bindkey -v
 
 # no beep
 setopt nobeep
