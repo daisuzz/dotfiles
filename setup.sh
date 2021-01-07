@@ -9,12 +9,24 @@
   fi
 }
 
-: "install other packages by brew" && {
+: "install packages by brew" && {
   packages=( peco tig jq )
   for package in ${packages[@]}; do
     if ! brew list | grep $package &> /dev/null; then
       info "installing ${package}..."
       brew install ${package}
+    else
+      warn "${package} is already installed"
+    fi
+  done
+}
+
+: "install packages by brew cask" && {
+  packages=( rectangle )
+  for package in ${packages[@]}; do
+    if ! brew list --cask | grep $package &> /dev/null; then
+      info "installing ${package}..."
+      brew install --cask ${package}
     else
       warn "${package} is already installed"
     fi
@@ -27,7 +39,7 @@ curl -L https://raw.githubusercontent.com/docker/cli/master/contrib/completion/z
 
 DOT_FILES=(.zshrc .vimrc)
 
-for file in ${DOT_FILES[@]} 
+for file in ${DOT_FILES[@]}
 do
  ln -s $HOME/repository/dotfiles/$file $HOME/$file
 done
