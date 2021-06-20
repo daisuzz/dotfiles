@@ -91,3 +91,6 @@ bindkey '^R' peco-history-selection
 
 # Go
 export PATH=/usr/local/go:$PATH
+
+# Ruby
+eval "$(rbenv init -)"

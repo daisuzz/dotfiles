@@ -10,7 +10,7 @@
 }
 
 : "install packages by brew" && {
-  packages=( peco tig jq )
+  packages=( peco tig jq rbenv)
   for package in ${packages[@]}; do
     if ! brew list | grep $package &> /dev/null; then
       info "installing ${package}..."
