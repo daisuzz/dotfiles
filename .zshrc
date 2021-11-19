@@ -74,11 +74,6 @@ alias glo='git log --oneline -n 10'
 alias ggpull='git pull origin $(git rev-parse --abbrev-ref HEAD)'
 alias ggpush='git push origin $(git rev-parse --abbrev-ref HEAD)'
 
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR='/Users/daisuzz/.sdkman'
-[[ -s '/Users/daisuzz/.sdkman/bin/sdkman-init.sh' ]] && source '/Users/daisuzz/.sdkman/bin/sdkman-init.sh'
-
-
 # peco
 function peco-history-selection() {
     BUFFER=`history -n 1 | tail -r  | awk '!a[$0]++' | peco`
