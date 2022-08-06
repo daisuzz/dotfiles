@@ -63,7 +63,7 @@ alias lla='ls -la'
 # git alias
 alias gsw='git switch'
 alias gsc='git switch -c'
-alias gsm='git switch master'
+alias gsm='git switch main'
 alias grs='git restore'
 alias gb='git branch'
 alias gba='git branch -a'
