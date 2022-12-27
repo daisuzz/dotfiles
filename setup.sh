@@ -34,16 +34,20 @@
 }
 
 mkdir -p ~/.zsh/completion
-
 curl -L https://raw.githubusercontent.com/docker/cli/master/contrib/completion/zsh/_docker > .zsh/completion/_docker
 
 DOT_FILES=(.zshrc .vimrc)
-
 for file in ${DOT_FILES[@]}
 do
  ln -s $HOME/repository/dotfiles/$file $HOME/$file
 done
 
+# peco
 mkdir -p $HOME/.peco
-
 ln -s $HOME/repository/dotfiles/.peco/config.json $HOME/.peco/config.json
+
+# sdkman
+curl -s "https://get.sdkman.io" | bash
+source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+
