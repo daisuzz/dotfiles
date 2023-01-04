@@ -59,7 +59,7 @@ else
 fi
 
 : "install sdkman" && {
-  if ! command_exists sdk; then
+  if [ ! -e $HOME/.sdkman ]; then
     echo "installing sdkman..."
     curl -s "https://get.sdkman.io" | bash
     source "$HOME/.sdkman/bin/sdkman-init.sh"
