@@ -1,11 +1,15 @@
 #!/bin/zsh
 
+function command_exists() {
+  type "$1" &> /dev/null ;
+}
+
 : "install brew" && {
   if ! command_exists brew; then
-    info "installing brew..."
+    echo "installing brew..."
     /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
   else
-    warn "brew is already installed"
+    echo "brew is already installed"
   fi
 }
 
@@ -13,10 +17,10 @@
   packages=( peco tig jq rbenv)
   for package in ${packages[@]}; do
     if ! brew list | grep $package &> /dev/null; then
-      info "installing ${package}..."
+      echo "installing ${package}..."
       brew install ${package}
     else
-      warn "${package} is already installed"
+      echo "${package} is already installed"
     fi
   done
 }
@@ -25,10 +29,10 @@
   packages=( rectangle )
   for package in ${packages[@]}; do
     if ! brew list --cask | grep $package &> /dev/null; then
-      info "installing ${package}..."
+      echo "installing ${package}..."
       brew install --cask ${package}
     else
-      warn "${package} is already installed"
+      echo "${package} is already installed"
     fi
   done
 }
@@ -39,15 +43,27 @@ curl -L https://raw.githubusercontent.com/docker/cli/master/contrib/completion/z
 DOT_FILES=(.zshrc .vimrc)
 for file in ${DOT_FILES[@]}
 do
- ln -s $HOME/repository/dotfiles/$file $HOME/$file
+  if [ ! -e $HOME/$file ]; then
+    ln -s $HOME/repository/dotfiles/$file $HOME/$file
+  else
+    echo "$file already exists"
+  fi
 done
 
 # peco
 mkdir -p $HOME/.peco
-ln -s $HOME/repository/dotfiles/.peco/config.json $HOME/.peco/config.json
+if [ ! -e $HOME/.peco ]; then
+  ln -s $HOME/repository/dotfiles/.peco/config.json $HOME/.peco/config.json
+else
+  echo ".peco already exists"
+fi
 
-# sdkman
-curl -s "https://get.sdkman.io" | bash
-source "$HOME/.sdkman/bin/sdkman-init.sh"
-
-
+: "install sdkman" && {
+  if ! command_exists sdk; then
+    echo "installing sdkman..."
+    curl -s "https://get.sdkman.io" | bash
+    source "$HOME/.sdkman/bin/sdkman-init.sh"
+  else
+    echo "sdkman is already installed"
+  fi
+}

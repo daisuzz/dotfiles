@@ -92,8 +92,8 @@ export PATH=/usr/local/go:$PATH
 # Ruby
 eval "$(rbenv init -)"
 
-# Fig post block. Keep at the bottom of this file.
-[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
-
 # sdkman
 source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+# Fig post block. Keep at the bottom of this file.
+[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
