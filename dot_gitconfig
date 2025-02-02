@@ -1,0 +1,21 @@
+[user]
+	email = daisaku.rugby@gmail.com
+	name = daisuzz
+[core]
+	excludesfile = .gitignore
+[filter "lfs"]
+	clean = git-lfs clean %f
+	smudge = git-lfs smudge %f
+	required = true
+[color]
+	ui = true
+[alias]
+[pager]
+  branch = cat
+  log = cat
+[credential]
+	helper = osxkeychain
+[init]
+	defaultBranch = main
+[pull]
+	rebase = false
