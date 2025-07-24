@@ -112,9 +112,3 @@ source "$HOME/.sdkman/bin/sdkman-init.sh"
 
 # ghostty
 export XDG_CONFIG_HOME=~
-
-# fig
-[[ -f "$HOME/fig-export/dotfiles/dotfile.zsh" ]] && builtin source "$HOME/fig-export/dotfiles/dotfile.zsh"
-
-# Q post block. Keep at the bottom of this file.
-[[ -f "${HOME}/Library/Application Support/amazon-q/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zshrc.post.zsh"
