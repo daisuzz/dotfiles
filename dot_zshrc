@@ -80,7 +80,7 @@ alias ggpush='git push origin $(git rev-parse --abbrev-ref HEAD)'
 # Set up fzf key bindings and fuzzy completion
 source <(fzf --zsh)
 
-export FZF_DEFAULT_OPTS="--reverse --no-sort --no-hscroll --preview-window=down"
+export FZF_DEFAULT_OPTS="--exact --reverse --no-sort --no-hscroll --preview-window=down"
 
 user_name=$(git config user.name)
 fmt="\
