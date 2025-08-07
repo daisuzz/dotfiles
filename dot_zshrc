@@ -60,6 +60,9 @@ alias ll='ls -l'
 alias la='ls -a'
 alias lla='ls -la'
 
+alias find='fd'
+alias cat='bat'
+
 # git alias
 alias gsw='git switch'
 alias gsc='git switch -c'
