@@ -15,6 +15,7 @@ function command_exists() {
 
 : "install packages by brew" && {
   packages=(tig jq rbenv redis bat fd fzf)
+  packages=( peco tig jq rbenv redis mysql chezmoi )
   for package in ${packages[@]}; do
     if ! brew list | grep $package &> /dev/null; then
       echo "installing ${package}..."

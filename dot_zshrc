@@ -1,0 +1,114 @@
+# Q pre block. Keep at the top of this file.
+[[ -f "${HOME}/Library/Application Support/amazon-q/shell/zshrc.pre.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zshrc.pre.zsh"
+# color
+autoload -Uz colors
+colors
+
+# prompt
+autoload -Uz vcs_info
+precmd_vcs_info() { vcs_info }
+precmd_functions+=( precmd_vcs_info )
+setopt prompt_subst
+zstyle ':vcs_info:git:*' formats "%F{yellow}%b%f"
+zstyle ':vcs_info:git:*' actionformats "%F{yellow}%b %a%f"
+PROMPT='%F{green}[%n@%m]%f %~ $vcs_info_msg_0_ '
+
+# share history
+setopt share_history
+
+export HISTFILE=~/.zsh_history
+export HISTSIZE=10000
+export SAVEHIST=10000
+
+# fix typo
+setopt correct
+
+# set vim keybind
+# bindkey -v
+
+# no beep
+setopt nobeep
+
+# auto cd
+setopt auto_cd
+
+# cdpath
+cdpath=(~/repository)
+
+# zshcompletions
+fpath=(~/.zsh/completion $fpath)
+
+autoload -Uz compinit
+compinit -u
+
+# select completion
+zstyle ':completion:*' menu select
+
+# zsh-autosuggestions
+if [ ! -e ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh  ]; then
+  git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
+fi
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+# alias
+alias u='cd ../'
+alias uu='cd ../../'
+alias uuu='cd ../../../'
+alias uuuu='cd ../../../../'
+
+alias ll='ls -l'
+alias la='ls -a'
+alias lla='ls -la'
+
+# git alias
+alias gsw='git switch'
+alias gsc='git switch -c'
+alias gsm='git switch main'
+alias grs='git restore'
+alias gb='git branch'
+alias gba='git branch -a'
+alias gbd='git branch -d'
+alias gbD='git branch -D'
+alias gst='git status'
+alias gfa='git fetch --all --prune'
+alias gm='git merge'
+alias glo='git log --oneline -n 10'
+alias ggpull='git pull origin $(git rev-parse --abbrev-ref HEAD)'
+alias ggpush='git push origin $(git rev-parse --abbrev-ref HEAD)'
+
+# fzf
+# Set up fzf key bindings and fuzzy completion
+source <(fzf --zsh)
+
+export FZF_DEFAULT_OPTS="--exact --reverse --no-sort --no-hscroll --preview-window=down"
+
+user_name=$(git config user.name)
+fmt="\
+%(if:equals=$user_name)%(authorname)%(then)%(color:default)%(else)%(color:brightred)%(end)%(refname:short)|\
+%(committerdate:relative)|\
+%(subject)"
+function select-git-branch-friendly() {
+  selected_branch=$(
+    git branch --sort=-committerdate --format=$fmt --color=always \
+    | column -ts'|' \
+    | fzf --ansi --exact --preview='git log --oneline --graph --decorate --color=always -50 {+1}' \
+    | awk '{print $1}' \
+  )
+  BUFFER="${LBUFFER}${selected_branch}${RBUFFER}"
+  CURSOR=$#LBUFFER+$#selected_branch
+  zle redisplay
+}
+zle -N select-git-branch-friendly
+bindkey '^b' select-git-branch-friendly
+
+# Go
+export PATH=/usr/local/go:$PATH
+
+# Ruby
+eval "$(rbenv init -)"
+
+# sdkman
+source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+# ghostty
+export XDG_CONFIG_HOME=~
