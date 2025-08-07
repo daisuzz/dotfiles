@@ -14,7 +14,7 @@ function command_exists() {
 }
 
 : "install packages by brew" && {
-  packages=( peco tig jq rbenv redis mysql)
+  packages=(tig jq rbenv redis bat fd fzf)
   for package in ${packages[@]}; do
     if ! brew list | grep $package &> /dev/null; then
       echo "installing ${package}..."
@@ -49,14 +49,6 @@ do
     echo "$file already exists"
   fi
 done
-
-# peco
-mkdir -p $HOME/.peco
-if [ ! -e $HOME/.peco ]; then
-  ln -s $HOME/repository/dotfiles/.peco/config.json $HOME/.peco/config.json
-else
-  echo ".peco already exists"
-fi
 
 : "install sdkman" && {
   if [ ! -e $HOME/.sdkman ]; then
