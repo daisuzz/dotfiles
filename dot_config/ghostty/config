@@ -47,4 +47,4 @@ background-opacity = 0.85
 window-height=510
 window-width=1640
 font-feature = -dlig
-
+auto-update-channel = tip
